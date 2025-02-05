@@ -1050,14 +1050,9 @@ Breakdown:
 - isn't explicitly mentioned that the lists are equal in length, but seems to be the case from the example and input. we can cover for unequal list lengths later by trimming them down to equal length / assuming the rest are zero in the shorter list.
 - need to calculate distance between lists - sort + calculate each independent difference before summing (i presume this is the approach they want me to take, we'll find out in the second part). for now, i'll subtract sum(list 1) from sum(list 2).
 
-"""
+- okay so sum doesn't work bc i need each individual absolute distance. i guess we're sorting first and doing this individually
 
-# def sum_list(input_list: list) -> int:
-#     sum = 0
-#     for element in list:
-#         sum += element
-#     return sum
-# nvm there's a sum list function sum()
+"""
 
 def parse_input(input_str: str):
     list_1 = []
@@ -1065,17 +1060,18 @@ def parse_input(input_str: str):
 
     # assuming equal length lists for now
     for line in input_str.split('\n'):
-        print(line)
         split_str = line.split("   ")
-        print(split_str)
         list_1.append(int(split_str[0]))
         list_2.append(int(split_str[1]))
 
-    return list_1, list_2
+    return sorted(list_1), sorted(list_2)
 
 def calculate_distance(input_str: str) -> int:
+    distance = 0
     list_1, list_2 = parse_input(input_str)
-    return abs(sum(list_1) - sum(list_2))
+    for i in range(len(list_1)):
+        distance += abs(list_1[i] - list_2[i])
+    return distance
 
 input_str = """28186   35627
 51854   34597
