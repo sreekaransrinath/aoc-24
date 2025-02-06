@@ -58,7 +58,6 @@ def count_safe(input_str: str) -> int:
         elif list[1] < list[0]:
             for i in range(len(list) - 1):
                 diff = list[i] - list[i+1]
-                print(diff)
                 if (diff > 3) or (diff < 1):
                     break
                 else:
