@@ -47,22 +47,26 @@ def count_safe(input_str: str) -> int:
 
     for list in parse_input(input_str):
         if list[1] > list[0]:
+            is_broken = False
             for i in range(len(list) - 1):
                 diff = list[i+1] - list[i]
                 if (diff > 3) or (diff < 1):
+                    is_broken = True
                     break
-                else:
-                    safe_count += 1
-            print(list)
+            # print(list)
         
         elif list[1] < list[0]:
             for i in range(len(list) - 1):
+                is_broken = False
                 diff = list[i] - list[i+1]
+                # print(diff)
                 if (diff > 3) or (diff < 1):
+                    is_broken = True
                     break
-                else:
-                    safe_count += 1
-            print(list)
+            # print(list)
+        
+        if is_broken == False:
+            safe_count += 1
 
     return safe_count
 
